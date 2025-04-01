@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import ScenarioForm from "@/components/ScenarioForm";
 import VideoPlayer from "@/components/VideoPlayer";
 import VideoHistory, { VideoHistoryItem } from "@/components/VideoHistory";
@@ -9,7 +9,6 @@ import GenerationStatus from "@/components/GenerationStatus";
 import { FileVideo, ArrowRight, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 
-// Mock video URLs for demonstration
 const SAMPLE_VIDEOS = [
   "https://mazwai.com/videvo_files/video/free/2015-09/small_watermarked/MH19_5_original_x264.webm",
   "https://mazwai.com/videvo_files/video/free/2019-01/small_watermarked/190111_07_BuildingsTraffic_1080p_preview.webm",
@@ -29,7 +28,6 @@ const Index = () => {
     setProgress(0);
     setStage("Analyzing scenario...");
     
-    // Simulate video generation with progress updates
     const intervalId = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -38,7 +36,6 @@ const Index = () => {
           return 100;
         }
         
-        // Update generation stage based on progress
         if (prev === 10) setStage("Generating scenes...");
         if (prev === 40) setStage("Rendering video...");
         if (prev === 70) setStage("Applying effects...");
@@ -50,7 +47,6 @@ const Index = () => {
   };
 
   const completeGeneration = (scenario: string, style: string) => {
-    // In a real app, this would receive the URL of the generated video
     const randomVideoUrl = SAMPLE_VIDEOS[Math.floor(Math.random() * SAMPLE_VIDEOS.length)];
     
     const newVideo: VideoHistoryItem = {
@@ -87,7 +83,6 @@ const Index = () => {
 
       <main className="container mx-auto p-4 lg:p-6">
         <div className="flex flex-col lg:flex-row gap-6 relative">
-          {/* Sidebar toggle for mobile */}
           <Button 
             variant="outline" 
             size="icon"
@@ -97,7 +92,6 @@ const Index = () => {
             {sidebarOpen ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
           </Button>
 
-          {/* Main content */}
           <div className="lg:flex-1 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -160,7 +154,6 @@ const Index = () => {
             )}
           </div>
 
-          {/* Sidebar */}
           {sidebarOpen && (
             <div className="lg:w-80 space-y-6">
               <h2 className="text-xl font-bold mb-4">Video History</h2>
